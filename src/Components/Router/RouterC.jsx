@@ -4,16 +4,12 @@ import Home from "../../Pages/Home";
 import Contact from "../../Pages/Contact";
 import NewProject from "../../Pages/NewProject";
 import Container from "./layout/Container";
+import Navbar from "./layout/Navbar"
 
 function RouterC(){
     return(
         <Router>
-            <div>
-                <Link to= "Home">Home</Link>
-                <Link to= "Company"> Company</Link>
-                <Link to="Contact"> Contact</Link>
-                <Link to="New Project">New Project</ Link>
-            </div>  
+           <Navbar/>
             <Container customClass="min-height">
                 <Routes>
                     <Route path="/Home" element={<Home/>}/>
