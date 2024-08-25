@@ -2,6 +2,8 @@
     display: flex;
     justify-content: space-between;
     background-color: #222;
+    padding: 1em;
+
     
 }
 
@@ -24,11 +26,13 @@
 .navlink{
     display: flex;
     list-style: none;
-    margin:  0;
+    align-items: center;
+    color: #FFF;
+    margin-right: 1em;
     text-decoration: none;
 }
 
-.list:hover{
+.navlink:hover{
     color: #FFBB33;
 
 }
