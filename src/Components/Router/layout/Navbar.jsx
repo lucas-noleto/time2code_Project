@@ -14,17 +14,17 @@ function Navbar(){
             </Link>
             <ul className={styles.navlink}>
                 <li className={styles.list}>
-                    <Link to= "Home" className={styles.navlink}>Home</Link>
+                    <Link to= {`/`} className={styles.navlink}>Home</Link>
                 </li>
                 <li className={styles.list}>
-                    <Link to= "Company" className={styles.navlink}> Company</Link>
+                    <Link to= {`/company`} className={styles.navlink}> Company</Link>
                 </li>
                 <li className={styles.list}>
-                    <Link to="Contact" className={styles.navlink}> Contact</Link>
+                    <Link to={`/contact`} className={styles.navlink}> Contact</Link>
                     
                 </li>
                 <li className={styles.list}>
-                    <Link to="New Project" className={styles.navlink}>New Project</ Link>
+                    <Link to={`/new_project`} className={styles.navlink}>New Project</ Link>
                 </li>
             </ul>
         </Container>
