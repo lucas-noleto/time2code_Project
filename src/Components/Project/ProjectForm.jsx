@@ -1,48 +1,71 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
+import { useEffect, useState } from 'react';
+ 
 
-import Input from '../../Components/form/Input'
-import Select from '../form/Select'
-import SubmitButton from '../form/Submit'
+import Input from '../../Components/form/Input';
+import Select from '../form/Select';
+import SubmitButton from '../form/Submit';
+import apiUrl from '../../axios/config';
 
-function ProjectForm({btnText}){
-    
-    const [categories, setCategories] = useState([])
+function ProjectForm({ btnText, handleSubmit, projectData }) {
+    const [categories, setCategories] = useState([]); 
+    const [project, setProject] = useState(projectData || {});
 
-    const getCategories = async() =>{
+    useEffect(() => {
+        const getCategories = async () => {
+            try {
+                const response = await apiUrl.get("/categories");
+                const data = response.data;
+                setCategories(data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
 
-        try {
-            
-            const response = await axios.get(
-                "http://localhost:5000/categories"
-            );
-            
-            const data = response.data;
+        getCategories();
+    }, []);
 
-            setCategories(data)
-
-        } catch (error) {
-            console.log(error)
-            
+    const handleChange = (e) => {
+        if (e.target.name === 'category_id') {
+            const selectedCategory = JSON.parse(e.target.value);
+            setProject({ ...project, category: selectedCategory });
+        } else {
+            setProject({ ...project, [e.target.name]: e.target.value });
         }
+    };
 
-    }
-    useEffect(()=>{
+    const submit = (e) => {
+        e.preventDefault();
+        handleSubmit(project);
+    };
 
-        getCategories()
-
-    },[])
-    
-    
-    
-    return(
-        <form>
-            <Input type="text" text = "Nome do projeto" name="name" placeholder= "Insira o nome do projeto"/>
-            <Input type="number" text = "Orçamento do projeto" name="budget" placeholder= "Insira o orçamento total"/>
-            <Select  name="category_id" text="Selecione a catergoria" options={categories}/>
-            <SubmitButton btnText="Criar projeto"/>
+    return (
+        <form onSubmit={submit}>
+            <Input 
+                type="text" 
+                text="Nome do projeto" 
+                name="name" 
+                placeholder="Insira o nome do projeto" 
+                handleOnChange={handleChange} 
+                value={project.name || ''} 
+            />
+            <Input 
+                type="number" 
+                text="Orçamento do projeto" 
+                name="budget" 
+                placeholder="Insira o orçamento total" 
+                handleOnChange={handleChange} 
+                value={project.budget || ''} 
+            />
+            <Select 
+                name="category_id" 
+                text="Selecione a categoria" 
+                options={categories} 
+                handleOnChange={handleChange} 
+                value={project.category || {}} 
+            />
+            <SubmitButton btnText={btnText} />
         </form>
-    )
+    );
 }
 
-export default ProjectForm
+export default ProjectForm;
