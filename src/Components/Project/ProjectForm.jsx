@@ -26,12 +26,13 @@ function ProjectForm({ btnText, handleSubmit, projectData }) {
 
     const handleChange = (e) => {
         if (e.target.name === 'category_id') {
-            const selectedCategory = JSON.parse(e.target.value);
+            const selectedCategory = categories.find(category => category.id === e.target.value);
             setProject({ ...project, category: selectedCategory });
         } else {
             setProject({ ...project, [e.target.name]: e.target.value });
         }
     };
+    
 
     const submit = (e) => {
         e.preventDefault();
@@ -63,6 +64,7 @@ function ProjectForm({ btnText, handleSubmit, projectData }) {
                 handleOnChange={handleChange} 
                 value={project.category || {}} 
             />
+
             <SubmitButton btnText={btnText} />
         </form>
     );

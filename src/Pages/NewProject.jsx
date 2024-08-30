@@ -14,20 +14,24 @@ function NewProject() {
     // const [orcamento, setOrc] = useState()
 
     function createProject(project) {
-        // Inicializando custos e serviços
         project.cost = 0;
         project.services = [];
-        
+
         // Enviando o projeto via POST
         apiUrl.post("/projects", project)
-            .then((response) => {
-                console.log("Projeto criado:", response.data);
-                navigate('/', { state: { message: "Projeto criado com sucesso!" } }); // Navegar após a criação
-            })
-            .catch((error) => {
-                console.error("Erro ao criar o projeto:", error);
-            });
+        .then((response) => {
+            console.log("Projeto criado:", response.data);
+            // Navegar após a criação
+            navigate('/projects', { state: { message: "Projeto criado com sucesso!" } });
+        })
+        .catch((error) => {
+            console.error("Erro ao criar o projeto:", error);
+            // Exibir uma mensagem de erro ou tratar o erro de forma apropriada
+            navigate('/projects', { state: { message: "Falha ao criar o projeto." } });
+        });
+    
     }
+    
 
     return (
         <div className={styles.newproject_container}>

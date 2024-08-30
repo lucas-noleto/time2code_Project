@@ -6,6 +6,7 @@ import Home from "./Pages/Home"
 import Contact from "./Pages/Contact"
 import Company from "./Pages/Company"
 import NewProject from "./Pages/NewProject"
+import Project from './Pages/Projects';
 
 import  {createBrowserRouter, RouterProvider, Route} from "react-router-dom"
 
@@ -30,6 +31,9 @@ const router = createBrowserRouter([
           {
             path:"/new_project",
             element: <NewProject/>
+          },{
+            path:"/projects",
+            element: <Project/>
           }
     ]
   }

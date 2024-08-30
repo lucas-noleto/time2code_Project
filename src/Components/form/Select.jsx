@@ -1,4 +1,4 @@
-import styles from './Select.module.css';
+import styles from './Select.module.css'
 
 function Select({ text, name, options, handleOnChange, value }) {
     return (
@@ -8,11 +8,11 @@ function Select({ text, name, options, handleOnChange, value }) {
                 name={name} 
                 id={name} 
                 onChange={handleOnChange} 
-                value={value.id || ''} // Usamos value.id aqui
+                value={value.id || ''} // Use o ID da categoria como valor
             > 
                 <option value="">Selecione uma opção</option>
                 {options.map((option) => (
-                    <option value={JSON.stringify(option)} key={option.id}>
+                    <option value={option.id} key={option.id}>
                         {option.name}
                     </option>
                 ))}  
@@ -21,4 +21,4 @@ function Select({ text, name, options, handleOnChange, value }) {
     );
 }
 
-export default Select;
+export default Select
