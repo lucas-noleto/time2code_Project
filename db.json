@@ -119,6 +119,23 @@
       },
       "cost": 0,
       "services": []
+    },
+    {
+      "id": "d51c",
+      "name": "Digital College",
+      "budget": "12314",
+      "category": {
+        "id": "2",
+        "name": "Desenvolvimento Front"
+      },
+      "cost": 0,
+      "services": []
+    },
+    {
+      "id": "8713",
+      "name": "Di",
+      "cost": 0,
+      "services": []
     }
   ],
   "categories": [
