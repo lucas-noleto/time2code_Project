@@ -1,49 +1,6 @@
 {
   "projects": [
     {
-      "id": "aa9c",
-      "name": "Vivere Sanus",
-      "budget": "100000",
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "2e0d",
-      "name": "Vivere Sanus",
-      "budget": "100000",
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "c31f",
-      "name": "ERP Solar",
-      "budget": "122000",
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "464b",
-      "name": "Teste",
-      "budget": "1231",
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "e6be",
-      "name": "teste 2",
-      "budget": "123131231",
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "db12",
-      "name": "Soulenergy",
-      "budget": "1231",
-      "category_id": "2",
-      "cost": 0,
-      "services": []
-    },
-    {
       "id": "b500",
       "name": "adasd",
       "budget": "123132",
@@ -134,6 +91,17 @@
     {
       "id": "8713",
       "name": "Di",
+      "cost": 0,
+      "services": []
+    },
+    {
+      "id": "164a",
+      "name": "Linkin Park",
+      "budget": "1999",
+      "category": {
+        "id": "3",
+        "name": "Design"
+      },
       "cost": 0,
       "services": []
     }
