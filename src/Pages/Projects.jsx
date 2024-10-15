@@ -6,25 +6,30 @@ import Container from '../Components/Router/layout/Container'
 import LinkButton from '../Components/Router/layout/LinkButton'
 import ProjectCard from '../Components/Project/ProjectCard.tsx'
 
+import Loading from '../Components/Router/layout/Loading.tsx'
+
 import { useState, useEffect} from 'react'
 
 function Projects(){
     const [projects, setProjects] = useState([])
-
+    const [removeLoading,setRemoveLoading] =useState(false)
     const location = useLocation()
 
     useEffect (()=>{
+       setTimeout (()=>{
         apiUrl.get('/projects')
         .then((response)=>{
             console.log('Projetos criados:', response.data)
             const data = response.data
             setProjects(data)
+            setRemoveLoading(true)
         })
         .catch((error) => {
             console.error("Erro ao dar get em projetos:", error);
             // Exibir uma mensagem de erro ou tratar o erro de forma apropriada
              
         });
+       },1500)
 
     },[])
 
@@ -76,6 +81,11 @@ function Projects(){
                         
                         />                    
                     ))}
+                {!removeLoading && <Loading/>}
+                {removeLoading && projects.length === 0 &&(
+                    <p>Não há projetos cadastrados!</p>
+                )}
+
             </Container>
         </div>
     )
