@@ -14,6 +14,7 @@ function Projects(){
     const [projects, setProjects] = useState([])
     const [removeLoading,setRemoveLoading] =useState(false)
     const location = useLocation()
+    const [projectMessage,setProjectMessage] = useState['']
 
     useEffect (()=>{
        setTimeout (()=>{
@@ -57,6 +58,21 @@ function Projects(){
     
     }
 
+    function removeProject(id){
+
+        apiUrl.delete(`/projects/${id}`)
+        .then(() => {
+            setProjects(projects.filter((project) => project.id !== id))
+            setProjectMessage('Projeto removido com sucesso!')
+            
+            
+        })
+        .catch((error) => {
+            console.error("Erro ao deletar projeto", error);
+            // Exibir uma mensagem de erro ou tratar o erro de forma apropriada
+             
+        });
+    }
 
     return(
         <div className={styles.project_container}>
@@ -67,7 +83,11 @@ function Projects(){
                 </h1>
                 <LinkButton to ="/new_project" text="Criar projeto" />
             </div>
-            {message && <Message msg={message} type="success" />}
+            {message && <Message msg={message} 
+            type="success" />}
+            {projectMessage && <Message msg={projectMessage} 
+            type="success" />}
+            
             {getProject()}
             <Container customClass = 'start'>
                 {projects.length > 0 && 
@@ -78,6 +98,7 @@ function Projects(){
                         budget={project.budget}
                         category={project.category ? project.category.name : 'No_Category'}
                         key={project.id}
+                        handleRemove={removeProject}
                         
                         />                    
                     ))}

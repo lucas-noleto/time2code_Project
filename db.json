@@ -1,17 +1,6 @@
 {
   "projects": [
     {
-      "id": "b500",
-      "name": "adasd",
-      "budget": "123132",
-      "category": {
-        "id": "2",
-        "name": "Desenvolvimento Front"
-      },
-      "cost": 0,
-      "services": []
-    },
-    {
       "id": "cfb4",
       "name": "Ergo",
       "budget": "10000000",
@@ -90,7 +79,7 @@
     },
     {
       "id": "8713",
-      "name": "Di",
+      "name": "Digital teste1",
       "cost": 0,
       "services": []
     },
