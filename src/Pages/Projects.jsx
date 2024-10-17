@@ -14,7 +14,7 @@ function Projects(){
     const [projects, setProjects] = useState([])
     const [removeLoading,setRemoveLoading] =useState(false)
     const location = useLocation()
-    const [projectMessage,setProjectMessage] = useState['']
+    const [projectMessage,setProjectMessage] = useState([''])
 
     useEffect (()=>{
        setTimeout (()=>{

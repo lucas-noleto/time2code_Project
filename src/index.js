@@ -6,9 +6,10 @@ import Home from "./Pages/Home"
 import Contact from "./Pages/Contact"
 import Company from "./Pages/Company"
 import NewProject from "./Pages/NewProject"
-import Project from './Pages/Projects';
+import Project from './Pages/Project';
 
 import  {createBrowserRouter, RouterProvider, Route} from "react-router-dom"
+import Projects from './Pages/Projects';
 
 
 
@@ -33,6 +34,9 @@ const router = createBrowserRouter([
             element: <NewProject/>
           },{
             path:"/projects",
+            element: <Projects/>
+          },{
+            path:"/project/:id",
             element: <Project/>
           }
     ]
