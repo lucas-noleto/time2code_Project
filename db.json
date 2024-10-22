@@ -2,7 +2,7 @@
   "projects": [
     {
       "id": "cfb4",
-      "name": "Ergo",
+      "name": "Ergo editado",
       "budget": "10000000",
       "category": {
         "id": "4",
@@ -13,7 +13,7 @@
     },
     {
       "id": "1911",
-      "name": "ERP Solar 2",
+      "name": "ERP Solar Soluções",
       "budget": "134123",
       "category": {
         "id": "2",
