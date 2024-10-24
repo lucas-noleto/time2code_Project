@@ -8,8 +8,15 @@
         "id": "4",
         "name": "Planejamento"
       },
-      "cost": 0,
-      "services": []
+      "cost": 1231,
+      "services": [
+        {
+          "name": "lol",
+          "cost": "1231",
+          "description": "adasda",
+          "id": "8727597e-ca6f-42db-9d80-6be1df55e717"
+        }
+      ]
     },
     {
       "id": "1911",

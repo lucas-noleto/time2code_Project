@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom'
 import Loading from '../Components/Router/layout/Loading.tsx'
 import Container from '../Components/Router/layout/Container'
 import Message from '../Components/Router/layout/Message'
+import ServiceForm from '../Components/service/ServiceForm.jsx'
+import { parse, v4 as uuidv4 } from 'uuid'
 
 function Project(){
     const [project, setProject] = useState([]) 
@@ -31,6 +33,32 @@ function Project(){
             });
         }, 750);
     }, [id]);
+
+    function createService(){
+        setProjectMessage('')
+
+        const lastService = project.services[project.services.length -1]
+
+        lastService.id =  uuidv4()
+
+        const lastServiceCost = lastService.cost
+
+        const newCost = parseFloat(project.cost) + parseFloat(lastServiceCost)
+
+        if (newCost > parseFloat(project.budget)){
+            setProjectMessage('Orçamento ultrapassado, verifique o calor do serviço')
+            setType('error')
+            project.services.pop()
+            return false
+        }
+
+        project.cost = newCost
+
+        apiUrl.patch(`/projects/${project.id}`, project)
+        console.log(project) 
+
+
+    }
 
     function toggleProjectForm() {
         setShowProjectForm(!showProjectForm);
@@ -98,7 +126,11 @@ function Project(){
                             {!showServiceForm ? 'Adicionar serviço' : 'Fechar'}
                         </button>
                         <div className={styles.project_info}>
-                             {showServiceForm && <div>Formulario servico</div> }
+                             {showServiceForm && (<ServiceForm 
+                             handleSubmit={createService}
+                             btnText='Adicionar serviço'
+                             projectData={project}
+                             />) }
                         </div>
                     </div>
                     <h2>Serviços</h2>
