@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import Input from '../../Components/form/Input';
 import Select from '../form/Select';
-import SubmitButton from '../form/Submit';
+import SubmitButton from '../form/SubmitButton';
 import apiUrl from '../../axios/config';
 
 function ProjectForm({ btnText, handleSubmit, projectData }) {

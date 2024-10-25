@@ -1,7 +1,7 @@
 import styles from '../Project/ProjectForm.module.css'
 import { useState } from 'react'
 import Input from '../form/Input'
-import SubmitButton from '../form/Submit'
+import SubmitButton from '../form/SubmitButton'
 
 
 function ServiceForm({handleSubmit, btnText, projectData}){
@@ -41,7 +41,7 @@ function ServiceForm({handleSubmit, btnText, projectData}){
             handleOnChange={handleChange}
             />
 
-            <SubmitButton text={btnText}/>
+            <SubmitButton btnText={btnText}/>
         </form>
 
     )

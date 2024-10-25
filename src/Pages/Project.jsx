@@ -37,6 +37,10 @@ function Project(){
         }, 750);
     }, [id]);
 
+    function calculateTotalCost(services) {
+        return services.reduce((total, service) => total + parseFloat(service.cost || 0), 0);
+    }
+
     function createService(){
         setProjectMessage('')
 
@@ -58,27 +62,40 @@ function Project(){
         project.cost = newCost
 
         apiUrl.patch(`/projects/${project.id}`, project)
-        console.log(project) 
-        setShowProjectForm(false)
-
-
-    }
+        .then(() => {
+            setProject({ ...project });
+            setShowProjectForm(false);
+        })
+        .catch((error) => {
+            console.error("Erro ao adicionar serviço:", error);
+            setProjectMessage('Falha ao adicionar o serviço.');
+            setType('error');
+        });
+}
 
     function removeService(id,cost){
         const servicesUpdated = project.services.filter(
         (service) => service.id !== id
         )
 
-        const projectUpdated = project
+        // Cria um novo objeto de projeto atualizado
+        const updatedCost = calculateTotalCost(servicesUpdated);
+        const projectUpdated = { ...project, services: servicesUpdated, cost: updatedCost };
 
-        projectUpdated.services = servicesUpdated
 
-        projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost)
-
-        apiUrl.patch(`projects/${projectUpdated.id}`,projectUpdated)
-        setProject(projectUpdated)
-        setService(servicesUpdated)
-        setProjectMessage('Serviço removido com sucesso!')
+        apiUrl.patch(`/projects/${projectUpdated.id}`, projectUpdated)
+        .then(() => {
+            // Atualiza o estado com o novo objeto após a resposta da API
+            setProject(projectUpdated);
+            setService(servicesUpdated);
+            setProjectMessage('Serviço removido com sucesso!');
+            setType('success'); // Exibe uma mensagem de sucesso
+        })
+        .catch((error) => {
+            console.error("Erro ao deletar projeto", error);
+            setProjectMessage('Falha ao remover o serviço.');
+            setType('error');
+        });
     }
 
     function toggleProjectForm() {
