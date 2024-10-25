@@ -7,10 +7,12 @@ import Loading from '../Components/Router/layout/Loading.tsx'
 import Container from '../Components/Router/layout/Container'
 import Message from '../Components/Router/layout/Message'
 import ServiceForm from '../Components/service/ServiceForm.jsx'
+import ServiceCard from '../Components/service/ServiceCard.jsx'
 import { parse, v4 as uuidv4 } from 'uuid'
 
 function Project(){
     const [project, setProject] = useState([]) 
+    const [services,setService] = useState([])
     const [removeLoading, setRemoveLoading] = useState(false) 
     const { id } = useParams()
     const [showProjectForm, setShowProjectForm] = useState(false)
@@ -24,6 +26,7 @@ function Project(){
             .then((response) => {
                 console.log('Projeto:', response.data)
                 setProject(response.data)
+                setService(response.data.services)
                 setRemoveLoading(true)
             })
             .catch((error) => {
@@ -56,8 +59,26 @@ function Project(){
 
         apiUrl.patch(`/projects/${project.id}`, project)
         console.log(project) 
+        setShowProjectForm(false)
 
 
+    }
+
+    function removeService(id,cost){
+        const servicesUpdated = project.services.filter(
+        (service) => service.id !== id
+        )
+
+        const projectUpdated = project
+
+        projectUpdated.services = servicesUpdated
+
+        projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost)
+
+        apiUrl.patch(`projects/${projectUpdated.id}`,projectUpdated)
+        setProject(projectUpdated)
+        setService(servicesUpdated)
+        setProjectMessage('Serviço removido com sucesso!')
     }
 
     function toggleProjectForm() {
@@ -135,7 +156,19 @@ function Project(){
                     </div>
                     <h2>Serviços</h2>
                     <Container customClass = "start">
-                        <p>Itens de serviço</p>
+                        {services.length > 0 && 
+                        services.map((service) => (
+                            <ServiceCard
+                                id={service.id}
+                                name={service.name}
+                                cost={service.cost}
+                                description={service.description}
+                                key={service.id}
+                                handleRemove={removeService}
+                            />
+                        ))}
+                        
+                        {services.length===0 && <p>Não há serviços cadastrados.</p> }
                     </Container>
                 </Container>
             </div>

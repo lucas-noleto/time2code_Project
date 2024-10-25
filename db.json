@@ -8,13 +8,19 @@
         "id": "4",
         "name": "Planejamento"
       },
-      "cost": 1231,
+      "cost": null,
       "services": [
         {
           "name": "lol",
           "cost": "1231",
           "description": "adasda",
           "id": "8727597e-ca6f-42db-9d80-6be1df55e717"
+        },
+        {
+          "name": "Contratar um desenvolvedor php",
+          "id": "8b2d4e68-8028-431e-8a16-4ee8260f59b9",
+          "cost": "222",
+          "description": "Inserir função de reset de senha"
         }
       ]
     },
